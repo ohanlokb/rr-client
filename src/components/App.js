@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import {Router, Route, Switch, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import * as actions from '../store/actions';
@@ -10,6 +10,7 @@ import StreamEdit from '../components/streams/StreamEdit';
 import StreamDelete from '../components/streams/StreamDelete';
 import StreamList from '../components/streams/StreamList';
 import Header from '../components/Header';
+import history from '../history';
 
 class App extends Component {
   componentDidMount() {
@@ -19,19 +20,19 @@ class App extends Component {
   render() {
     return (
       <div className="ui container">
-        <BrowserRouter>
+        <Router history={history}>
           <div>
             <Header isAuthenticated={this.props.isAuthenticated} />
             <Switch>
               <Route path="/streams/new" component={StreamCreate} />
-              <Route path="/streams/show" component={StreamShow} />
-              <Route path="/streams/edit" component={StreamEdit} />
-              <Route path="/streams/delete" component={StreamDelete} />
+              <Route path="/streams/edit/:id" component={StreamEdit} />
+              <Route path="/streams/delete/:id" component={StreamDelete} />
+              <Route path="/streams/:id" component={StreamShow} />
               <Route path="/" exact component={StreamList} />
               <Redirect to="/" />
             </Switch>
           </div>
-        </BrowserRouter>
+        </Router>
       </div>
     );
   }

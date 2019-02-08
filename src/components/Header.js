@@ -9,11 +9,6 @@ const Header = (props) => {
     if(props.isAuthenticated) {
         authLinks = (
             <div className="right menu">
-                <Link className="item" to="/streams/new">Create</Link>
-                <Link className="item" to="/streams/show">Show</Link>
-                <Link className="item" to="/streams/edit">Edit</Link>
-                <Link className="item" to="/streams/delete">Delete</Link>
-
                 <Auth className="item" />
             </div>
         );
@@ -27,7 +22,7 @@ const Header = (props) => {
 
     return (
         <div className="ui secondary pointing menu">
-            <Link className="item" to="/">All Streams</Link>
+            <Link className="item header" to="/">Streams</Link>
             {authLinks}
         </div>
     );
